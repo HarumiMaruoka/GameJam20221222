@@ -50,7 +50,8 @@ public class ItemController : MonoBehaviour
         if (collision.tag == _gameZone)
         {
             ScoreManager.SetScore(Camera.main.transform.position.y);
-            SceneManager.LoadScene(_gameOverSceneName);
+            // SceneManager.LoadScene(_gameOverSceneName);
+            FindObjectOfType<SceneChange>().FadeInAndChangeScene();
         }
     }
     [SerializeField]
@@ -70,6 +71,7 @@ public class ItemController : MonoBehaviour
             FindObjectOfType<ItemGenerator>().Generate();
             FindObjectOfType<CameraController>().ChangeTarget(transform.position);
             this.enabled = false;
+            GetComponent<AudioSource>().Play();
         }
     }
 }
